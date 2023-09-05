@@ -120,7 +120,7 @@ function updateSamplesPlots(ForEachSamples){
 
     d3.json(url_1).then(function(data) {
         let SampleInfo = data.samples.find(sample => sample.id === ForEachSamples);
-        let SampleInfo_1 = data.metadata.find(item => item.id.toString() === ForEachSamples);
+        let SampleInfo_1 = data.metadata.find(metadata => metadata.id === ForEachSamples);
 
         let NewBarChart = [{
             x: SampleInfo.sample_values.slice(0, 10).reverse(),
