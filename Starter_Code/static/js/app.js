@@ -65,38 +65,46 @@ Plotly.newPlot("bubble", BubbleChartData, layoutbubble);
 
 // plot first sample (Gauge Chart)
 let SampleOneWashing = data.metadata[0].wfreq;
-let GaugePlotData = [{
-    type: "indicator",
-    mode: "gauge+number",
-    value: SampleOneWashing,
-    title: {text: `<h1>Belly Button Washing Frequency</h1> <hr> <h3>Scrubs Per Week</h3>`,
-            useHTML: true},
-    gauge: {
-        axis: { range: [0, 9], tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
-        steps: [
-            { range: [0, 1], color: "lightgray" },
-            { range: [1, 2], color: "lightyellow" },
-            { range: [2, 3], color: "yellow" },
-            { range: [3, 4], color: "gold" },
-            { range: [4, 5], color: "orange" },
-            { range: [5, 6], color: "darkorange" },
-            { range: [6, 7], color: "chocolate" },
-            { range: [7, 8], color: "saddlebrown" },
-            { range: [8, 9], color: "sienna" },
-           ],
+let GaugePlotData = [
+    {
+        type: "indicator",
+        mode: "gauge+number",
+        value: SampleOneWashing,
+        title: {
+            text: "<b>Belly Button Washing Frequency</b><br>Scrubs Per Week",
+            useHTML: true
+        },
+        gauge: {
+            axis: { range: [0, 9], tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] },
+            steps: [
+                { range: [0, 1], color: "lightgray" },
+                { range: [1, 2], color: "lightyellow" },
+                { range: [2, 3], color: "yellow" },
+                { range: [3, 4], color: "gold" },
+                { range: [4, 5], color: "orange" },
+                { range: [5, 6], color: "darkorange" },
+                { range: [6, 7], color: "chocolate" },
+                { range: [7, 8], color: "saddlebrown" },
+                { range: [8, 9], color: "sienna" },
+            ],
+        },
     },
-},
 ];
 
+
 let layoutGauge = {
-width: 700,
-height: 800,
-margin: {
-  l: 50,
-  r: 50,
-  t: 50,
-  b: 50
-}};
+    width: 700,
+    height: 800,
+    margin: {
+        l: 50,
+        r: 50,
+        t: 50,
+        b: 50,
+    },
+};
+
+
+
 
 Plotly.newPlot("gauge", GaugePlotData, layoutGauge);
 
@@ -115,12 +123,12 @@ Plotly.newPlot("gauge", GaugePlotData, layoutGauge);
     });
 });
 
-function updateSamplesPlots(ForEachSamples){
+function optionChanged(ForEachSamples){
     const url_1 = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
     d3.json(url_1).then(function(data) {
-        let SampleInfo = data.samples.find(sample => sample.id === ForEachSamples);
-        let SampleInfo_1 = data.metadata.find(item => item.id.toString() === ForEachSamples);
+        let SampleInfo = data.samples.find(sample => sample.id == ForEachSamples);
+        let SampleInfo_1 = data.metadata.find(item => item.id == ForEachSamples);
 
         let NewBarChart = [{
             x: SampleInfo.sample_values.slice(0, 10).reverse(),
@@ -175,7 +183,7 @@ let GaugePlotData = [{
             type: "indicator",
             mode: "gauge+number",
             value: SampleInfo_1.wfreq,
-            title: {text: `<h1>Belly Button Washing Frequency</h1> <hr> <h3>Scrubs Per Week</h3>`,
+            title: {text: "<b>Belly Button Washing Frequency</b><br>Scrubs Per Week",
                     useHTML: true},
             gauge: {
                 axis: { range: [0, 9], tickvals: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]},
@@ -220,7 +228,7 @@ let GaugePlotData = [{
     
     d3.selectAll("#selDataset").on("change", function() {
         let ForEachSamples = d3.select(this).property("value");
-        updateSamplesPlots(ForEachSamples);
+        optionChanged(ForEachSamples);
       });
       
-      //updateSamplesPlots(data.samples[0])
+      //optionChanged(data.samples[0])
