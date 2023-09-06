@@ -3,7 +3,7 @@
 The repo "belly-button-challenge" is created to address the requirements of Module 14 challenge (Interactive Visualization).
 
 
-Inside the repo, there is a folder names "Starter_Code". Items inside the folder is summarized as follows.
+Inside the repo, the following are included.
 
 
 	- A Microsoft Edge HTML Documnet called "index.html".
