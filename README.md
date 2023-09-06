@@ -1,6 +1,6 @@
 # belly-button-challenge
 
-The repo "belly-button-challenge" is created to address the requirements of Module 14 challenge (Interactive Visualization).
+The repo "belly-button-challenge" was created to address the requirements of the Module 14 challenge (Interactive Visualization).
 
 
 Inside the repo, the following are included.
@@ -12,9 +12,13 @@ Inside the repo, the following are included.
 	- A JASON Source File called "samples.json". This file includes data for this assignment. D3 library is used to read the data through a URL provided in the instructions.
 
 
-	- A folder called "static"...inside which a folder called "js" is included. Insider "js" a javaScript Source File called "app.js" is included. file "app.js" contains the code to 	address the requirments of this challenge.
+	- A folder called "static"...inside which a folder called "js" is included. Insider "js" a javaScript Source File called "app.js" is included. file "app.js" contains the code to address the requirments of this challenge.
 
 
-Please be adviced that the code for creating the gauge plots (the bouns) is included in "app.js", as well.
+Please be advised that the code for creating the gauge plots (the bouns) is included in "app.js", as well.
+
+
+Link to Page is: https://hussamgoda.github.io/belly-button-challenge/
+
 
  
