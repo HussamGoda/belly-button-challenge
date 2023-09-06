@@ -1,4 +1,4 @@
-// Define link and attach to a varibale 
+// Define link and attach to a variable 
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
 // Fetch the JSON data and console log it
@@ -103,12 +103,10 @@ let layoutGauge = {
     },
 };
 
-
-
-
 Plotly.newPlot("gauge", GaugePlotData, layoutGauge);
 
-//Add names to a dropdown menu (Test Subject ID No)
+
+//Add names to a dropdown menu
   let dropdownMenu = d3.select("#selDataset");
   data.names.forEach(function(name) {
   dropdownMenu.append("option").property("value", name).text(name)
@@ -123,13 +121,18 @@ Plotly.newPlot("gauge", GaugePlotData, layoutGauge);
     });
 });
 
+
+// Create plots (bar, bubble and gauge) based on selection from the dropdown menu
 function optionChanged(ForEachSamples){
     const url_1 = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
 
     d3.json(url_1).then(function(data) {
+      // define SampleInfo...to be used to create bar and bubble plots
         let SampleInfo = data.samples.find(sample => sample.id == ForEachSamples);
+      // define SampleInfo_1....to be used to create gauge plots  
         let SampleInfo_1 = data.metadata.find(item => item.id == ForEachSamples);
-
+      
+      // create bar plot  
         let NewBarChart = [{
             x: SampleInfo.sample_values.slice(0, 10).reverse(),
             y: SampleInfo.otu_ids.slice(0, 10).map(id => `OTU ${id}`).reverse(),
@@ -152,6 +155,8 @@ function optionChanged(ForEachSamples){
           }};
         
 Plotly.newPlot("bar", NewBarChart, layoutBar);
+
+       // create bubble plots
     
         let NewBubbleChart = [{
             x: SampleInfo.otu_ids,
@@ -160,7 +165,7 @@ Plotly.newPlot("bar", NewBarChart, layoutBar);
             mode: "markers",
             marker: {
                 size: SampleInfo.sample_values,
-                 color: SampleInfo.otu_ids,
+                color: SampleInfo.otu_ids,
                 colorscale: "Earth"
             }}];
 
@@ -179,7 +184,9 @@ Plotly.newPlot("bar", NewBarChart, layoutBar);
           
 Plotly.newPlot("bubble", NewBubbleChart, layoutbubble);
 
-let GaugePlotData = [{
+        // create gauge plots   
+
+        let GaugePlotData = [{
             type: "indicator",
             mode: "gauge+number",
             value: SampleInfo_1.wfreq,
@@ -231,4 +238,4 @@ let GaugePlotData = [{
         optionChanged(ForEachSamples);
       });
       
-      //optionChanged(data.samples[0])
+      optionChanged(data.samples[0]);
